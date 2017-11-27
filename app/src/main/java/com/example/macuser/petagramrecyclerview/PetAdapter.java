@@ -23,7 +23,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
 
     @Override
     public PetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_card_layout, parent, false);
 
         return new PetViewHolder(v);
     }
@@ -46,7 +46,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
         public PetViewHolder(View itemView) {
             super(itemView);
 
-            textView = (TextView) itemView.findViewById(R.id.tv_test);
+            textView = (TextView) itemView.findViewById(R.id.tvPetName);
 
         }
     }

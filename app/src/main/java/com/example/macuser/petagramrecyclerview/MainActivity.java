@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Pet> pets = new ArrayList<Pet>();
         pets.add(new Pet("Hola"));
-
+        pets.add(new Pet("Hannah"));
 
         PetAdapter petAdapter = new PetAdapter(pets);
         recyclerView.setAdapter(petAdapter);

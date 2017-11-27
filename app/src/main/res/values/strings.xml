@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PetagramRecyclerView</string>
+    <string name="number_bone">5</string>
 </resources>

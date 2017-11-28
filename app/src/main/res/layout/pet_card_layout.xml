@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cvPet"
     android:layout_width="match_parent"
     android:layout_marginLeft="20dp"
@@ -14,29 +13,12 @@
         android:orientation="vertical">
 
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="300dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/girl"
-                app:layout_constraintDimensionRatio="1:1"/>
-
-
-        </android.support.constraint.ConstraintLayout>
-
-        <!--
-        <ImageView
-            android:id="@+id/imgPet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/girl"/>
-        -->
+                android:src="@drawable/puppy2" />
+        
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,9 +28,10 @@
 
             <ImageView
                 android:id="@+id/imgWhiteBone"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/icons8_hotel_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/whitebone"
                 android:layout_weight="10"
                 />
 
@@ -57,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/app_name"
+                android:textSize="@dimen/font_card_size"
                 android:textAlignment="center"
                 android:layout_weight="75"/>
 
@@ -65,13 +49,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/number_bone"
+                android:textSize="@dimen/font_card_size"
                 android:layout_weight="5"/>
 
             <ImageView
                 android:id="@+id/imgOrangeBone"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/icons8_hotel_50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/filledbone"
                 android:layout_weight="10"
                 />
 

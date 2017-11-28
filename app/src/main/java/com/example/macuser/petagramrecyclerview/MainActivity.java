@@ -19,10 +19,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-
         ArrayList<Pet> pets = new ArrayList<Pet>();
-        pets.add(new Pet("Hola"));
-        pets.add(new Pet("Hannah"));
+        pets.add(new Pet("Tony", R.drawable.puppy2, 0));
+        pets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
+        pets.add(new Pet("Sam", R.drawable.puppygolden, 1));
+        pets.add(new Pet("Bob", R.drawable.puppyhood, 2));
 
         PetAdapter petAdapter = new PetAdapter(pets);
         recyclerView.setAdapter(petAdapter);

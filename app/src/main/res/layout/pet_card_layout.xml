@@ -13,12 +13,18 @@
         android:orientation="vertical">
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+        </View>
+
             <ImageView
+                android:id="@+id/imgPet"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/puppy2" />
-        
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,19 +32,20 @@
             android:orientation="horizontal"
             android:weightSum="100">
 
-            <ImageView
+            <Button
                 android:id="@+id/imgWhiteBone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/whitebone"
-                android:layout_weight="10"
+                android:background="@drawable/whitebone"
+                android:layout_weight="8"
                 />
 
             <TextView
                 android:id="@+id/tvPetName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/app_name"
                 android:textSize="@dimen/font_card_size"
                 android:textAlignment="center"
@@ -48,22 +55,26 @@
                 android:id="@+id/tvNumberBones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/number_bone"
                 android:textSize="@dimen/font_card_size"
                 android:layout_weight="5"/>
 
-            <ImageView
+            <Button
                 android:id="@+id/imgOrangeBone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/filledbone"
-                android:layout_weight="10"
+                android:background="@drawable/filledbone"
+                android:layout_weight="8"
                 />
 
         </LinearLayout>
 
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+        </View>
 
     </LinearLayout>
 

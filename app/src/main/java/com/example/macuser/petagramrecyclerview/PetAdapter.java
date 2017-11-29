@@ -32,28 +32,24 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
     @Override
     public PetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.pet_card_layout, parent, false);
-
         return new PetViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(PetViewHolder holder, final int position) {
+    public void onBindViewHolder(final PetViewHolder holder, final int position) {
         Pet pet = pets.get(position);
         holder.tvPetName.setText(pet.getName());
         holder.petPicture.setImageResource(pet.getPicture());
         holder.tvRating.setText(String.valueOf(pet.getRating()));
+
         holder.btnOrangeBone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Actiones
                 listener.onItemClick(position, 0);
+                holder.tvRating.setText(String.valueOf(pets.get(position).getRating()));
             }
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return pets.size();
     }
 
     public static class PetViewHolder extends RecyclerView.ViewHolder{
@@ -71,6 +67,11 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
             btnOrangeBone = (Button) itemView.findViewById(R.id.imgOrangeBone);
 
         }
+    }
+
+    @Override
+    public int getItemCount() {
+        return pets.size();
     }
 
     public interface OnItemClickListener{

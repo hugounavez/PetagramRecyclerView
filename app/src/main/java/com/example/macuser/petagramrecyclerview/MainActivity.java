@@ -1,11 +1,13 @@
 package com.example.macuser.petagramrecyclerview;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
 
-    private ArrayList<Pet> pets;
+    private Pets pets;
     private RecyclerView recyclerView;
 
     @Override
@@ -25,24 +27,31 @@ public class MainActivity extends AppCompatActivity {
         this.customToolbarInitialization();
         this.petsInitialization();
         this.adapterInitialization();
+    }
 
-        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.myActionBar);
-        // Support action bar to different screen
-        setSupportActionBar(toolbar);
 
+    void startSecondActivity(View view){
+        Intent intent = new Intent(MainActivity.this, PetLikesActivity.class);
+        String petJson = pets.toJson();
+        intent.putExtra("pets", petJson);
+        startActivity(intent);
     }
 
 
     void customToolbarInitialization(){
-
+        android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar) findViewById(R.id.myActionBar);
+        // Support action bar to different screen
+        setSupportActionBar(toolbar);
     }
 
     void petsInitialization(){
-        pets = new ArrayList<Pet>();
-        pets.add(new Pet("Tony", R.drawable.puppy2, 0));
-        pets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
-        pets.add(new Pet("Sam", R.drawable.puppygolden, 0));
-        pets.add(new Pet("Bob", R.drawable.puppyhood, 0));
+        ArrayList<Pet> temporalPets = new ArrayList<Pet>();
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
+        temporalPets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
+        temporalPets.add(new Pet("Sam", R.drawable.puppygolden, 0));
+        temporalPets.add(new Pet("Bob", R.drawable.puppyhood, 0));
+
+        this.pets = new Pets(temporalPets);
 
     }
 
@@ -52,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
-        final PetAdapter petAdapter = new PetAdapter(pets, new PetAdapter.OnItemClickListener() {
+        final PetAdapter petAdapter = new PetAdapter(pets.getPets(), new PetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int i, int action) {
                 switch (action){
                     case 0:
                         // Update likes in puppy
-                        int previousRating = pets.get(i).getRating();
-                        pets.get(i).setRating(previousRating + 1);
+                        int previousRating = pets.getPets().get(i).getRating();
+                        pets.getPets().get(i).setRating(previousRating + 1);
                         break;
                     default:
                         break;

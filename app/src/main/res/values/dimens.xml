@@ -2,4 +2,5 @@
 <resources>
     <dimen name="font_card_size">20dp</dimen>
     <dimen name="elevation_action_bar">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

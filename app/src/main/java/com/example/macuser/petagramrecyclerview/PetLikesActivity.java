@@ -2,11 +2,16 @@ package com.example.macuser.petagramrecyclerview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
 public class PetLikesActivity extends AppCompatActivity {
+
+    private Pets petsArrayList;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +25,18 @@ public class PetLikesActivity extends AppCompatActivity {
         button.setVisibility(View.INVISIBLE);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        getIntent().getStringExtra("pets");
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            // Parse the string to a User object
+            String objAsJson = bundle.getString("pets");
+
+            this.petsArrayList.setPets(Pets.fromJson(objAsJson).getPets());
+        }
+
     }
+
+
 
 }

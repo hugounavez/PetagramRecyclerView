@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">PetagramRecyclerView</string>
-    <string name="number_bone">5</string>
+    <string name="number_bone"></string>
     <string name="title_activity_pet_likes">PetLikesActivity</string>
 </resources>

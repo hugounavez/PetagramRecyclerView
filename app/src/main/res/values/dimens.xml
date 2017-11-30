@@ -3,4 +3,7 @@
     <dimen name="font_card_size">20dp</dimen>
     <dimen name="elevation_action_bar">4dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="bone_size_width">30dp</dimen>
+    <dimen name="bone_size_height">30dp</dimen>
+    <dimen name="card_size_height">30dp</dimen>
 </resources>

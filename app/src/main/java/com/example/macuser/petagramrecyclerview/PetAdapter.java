@@ -42,7 +42,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
         holder.petPicture.setImageResource(pet.getPicture());
         holder.tvRating.setText(String.valueOf(pet.getRating()));
 
-        holder.btnOrangeBone.setOnClickListener(new View.OnClickListener() {
+        holder.btnWhiteBone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Actiones
@@ -56,7 +56,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
         private final TextView tvPetName;
         private final ImageView petPicture;
         private final TextView tvRating;
-        private final Button btnOrangeBone;
+        private final Button btnWhiteBone;
 
         public PetViewHolder(View itemView) {
             super(itemView);
@@ -64,7 +64,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
             tvPetName = (TextView) itemView.findViewById(R.id.tvPetName);
             petPicture = (ImageView) itemView.findViewById(R.id.imgPet);
             tvRating = (TextView)   itemView.findViewById(R.id.tvNumberBones);
-            btnOrangeBone = (Button) itemView.findViewById(R.id.imgOrangeBone);
+            btnWhiteBone = (Button) itemView.findViewById(R.id.imgWhiteBone);
 
         }
     }

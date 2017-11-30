@@ -12,7 +12,7 @@ public class Pets {
     private ArrayList<Pet> pets;
 
     public Pets(ArrayList<Pet> pets) {
-     this.setPets(pets);
+        this.setPets(pets);
     }
 
     public ArrayList<Pet> getPets() {
@@ -28,6 +28,7 @@ public class Pets {
     }
 
     public static Pets fromJson(String json){
+
         return new Gson().fromJson(json, Pets.class);
     }
 }

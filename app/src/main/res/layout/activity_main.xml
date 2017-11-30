@@ -9,6 +9,7 @@
 
     <include android:id="@+id/myActionBar"
         layout="@layout/actionbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
     </include>
 

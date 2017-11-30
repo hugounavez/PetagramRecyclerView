@@ -15,7 +15,6 @@ public class Pets {
      this.setPets(pets);
     }
 
-
     public ArrayList<Pet> getPets() {
         return pets;
     }

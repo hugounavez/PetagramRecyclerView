@@ -6,26 +6,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.macuser.petagramrecyclerview.PetLikesActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_pet_likes" />
+    <include android:id="@+id/myActionBar2"
+        layout="@layout/actionbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+    </include>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_likes"
+        android:id="@+id/recycler_view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/myActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:scrollbars="vertical"/>

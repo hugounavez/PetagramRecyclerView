@@ -25,7 +25,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.customToolbarInitialization();
-        this.petsInitialization();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            // Parse the string to a User object
+            String objAsJson = bundle.getString("pets");
+
+            ArrayList<Pet> test = Pets.fromJson(objAsJson).getPets();
+            this.pets = new Pets(test);
+        }else{
+            this.petsInitialization();
+        }
+
+
         this.adapterInitialization();
     }
 
@@ -35,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         String petJson = pets.toJson();
         intent.putExtra("pets", petJson);
         startActivity(intent);
+        finish();
     }
 
 

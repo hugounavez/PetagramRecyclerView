@@ -26,7 +26,7 @@
                 ></meta-data>
         </activity>
         <activity android:name=".actitivies.ContactActivity">
-            
+
         </activity>
 
 

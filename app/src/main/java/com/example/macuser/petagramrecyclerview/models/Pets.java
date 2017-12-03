@@ -1,4 +1,4 @@
-package com.example.macuser.petagramrecyclerview;
+package com.example.macuser.petagramrecyclerview.models;
 
 import com.google.gson.Gson;
 

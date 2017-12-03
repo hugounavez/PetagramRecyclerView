@@ -1,4 +1,4 @@
-package com.example.macuser.petagramrecyclerview;
+package com.example.macuser.petagramrecyclerview.models;
 
 /**
  * Created by macuser on 11/22/17.

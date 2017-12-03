@@ -1,15 +1,15 @@
-package com.example.macuser.petagramrecyclerview;
+package com.example.macuser.petagramrecyclerview.actitivies;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.constraint.solver.widgets.Snapshot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
+import com.example.macuser.petagramrecyclerview.R;
+import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
+import com.example.macuser.petagramrecyclerview.models.Pet;
+import com.example.macuser.petagramrecyclerview.models.Pets;
 
 import java.util.ArrayList;
 
@@ -29,13 +29,11 @@ public class MainActivity extends AppCompatActivity {
         if (bundle != null){
             // Parse the string to a User object
             String objAsJson = bundle.getString("pets");
-
             ArrayList<Pet> test = Pets.fromJson(objAsJson).getPets();
             this.pets = new Pets(test);
         }else{
             this.petsInitialization();
         }
-
 
         this.adapterInitialization();
     }

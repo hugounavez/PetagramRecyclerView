@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
@@ -36,8 +38,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.adapterInitialization();
+
+
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_options, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_about:
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.menu_contact:
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     void startSecondActivity(View view){
         Intent intent = new Intent(MainActivity.this, PetLikesActivity.class);

@@ -25,7 +25,9 @@
                 android:value=".actitivies.MainActivity"
                 ></meta-data>
         </activity>
-
+        <activity android:name=".actitivies.ContactActivity">
+            
+        </activity>
 
 
     </application>

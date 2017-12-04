@@ -1,14 +1,19 @@
 package com.example.macuser.petagramrecyclerview.actitivies;
 
+import android.app.Fragment;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.FrameMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.macuser.petagramrecyclerview.R;
+import com.example.macuser.petagramrecyclerview.RecyclerViewFragment;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
 import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
@@ -17,16 +22,24 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private Pets pets;
     private RecyclerView recyclerView;
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
         this.customToolbarInitialization();
+
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             // Parse the string to a User object
@@ -37,10 +50,15 @@ public class MainActivity extends AppCompatActivity {
             this.petsInitialization();
         }
 
-        this.adapterInitialization();
 
+       // this.adapterInitialization();
+
+        this.setUpViewPager();
 
     }
+
+
+
 
 
     @Override
@@ -65,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     void startSecondActivity(View view){
         Intent intent = new Intent(MainActivity.this, PetLikesActivity.class);
         String petJson = pets.toJson();
@@ -80,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
+
     void petsInitialization(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
         temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
@@ -91,28 +111,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    void adapterInitialization(){
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+    private ArrayList<android.support.v4.app.Fragment> addFragments(){
+        ArrayList<android.support.v4.app.Fragment> fragments = new ArrayList<>();
 
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-
-        final PetAdapter petAdapter = new PetAdapter(pets.getPets(), new PetAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int i, int action) {
-                switch (action){
-                    case 0:
-                        // Update likes in puppy
-                        int previousRating = pets.getPets().get(i).getRating();
-                        pets.getPets().get(i).setRating(previousRating + 1);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
-
-        recyclerView.setAdapter(petAdapter);
-        recyclerView.setLayoutManager(llm);
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new ProfileFragmet());
+        return fragments;
     }
+
+
+
+    private void setUpViewPager(){
+
+        this.viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), this.addFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+
+
 }

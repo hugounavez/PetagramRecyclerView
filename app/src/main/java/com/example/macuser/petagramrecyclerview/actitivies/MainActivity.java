@@ -131,7 +131,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
     @Override
     public void onUpdateModelElement(int position) {
-
+        int previousRating = pets.getPets().get(position).getRating();
+        this.pets.getPets().get(position).setRating(previousRating + 1);
     }
 
     @Override

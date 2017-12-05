@@ -18,12 +18,12 @@
             android:layout_height="30dp">
         </View>
 
-            <ImageView
-                android:id="@+id/imgPet"
-                android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/puppy2" />
+        <ImageView
+            android:id="@+id/imgPet"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/puppy2" />
 
 
         <LinearLayout

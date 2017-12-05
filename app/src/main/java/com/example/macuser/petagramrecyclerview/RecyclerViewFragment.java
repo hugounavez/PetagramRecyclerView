@@ -25,6 +25,7 @@ public class RecyclerViewFragment extends Fragment{
 
     private Pets pets;
     private RecyclerView recyclerView;
+    private static final String ARG_PARAM1 = "param1";
 
     OnUpdateModelListener mCallback;
 
@@ -69,6 +70,22 @@ public class RecyclerViewFragment extends Fragment{
     }
 
 
+    // TODO: Rename and change types and number of parameters
+    public static RecyclerViewFragment newInstance(String objAsJson) {
+        RecyclerViewFragment fragment = new RecyclerViewFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, objAsJson);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            this.pets = Pets.fromJson(getArguments().getString(ARG_PARAM1)) ;
+        }
+    }
 
     void adapterInitialization(View v){
 

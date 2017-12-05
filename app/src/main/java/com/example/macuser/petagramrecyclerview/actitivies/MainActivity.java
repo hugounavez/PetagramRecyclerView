@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         this.customToolbarInitialization();
-
+        this.petsInitialization();
+        this.setUpViewPager();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -47,20 +48,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
             String objAsJson = bundle.getString("pets");
             ArrayList<Pet> test = Pets.fromJson(objAsJson).getPets();
             this.pets = new Pets(test);
-        }else{
-            this.petsInitialization();
+            //getSupportFragmentManager().beginTransaction().add(R.id., RecyclerViewFragment.newInstance(objAsJson),"RecyclerViewFragment").commit();
         }
 
 
-        // this.adapterInitialization();
-
-        this.setUpViewPager();
 
     }
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,14 +113,11 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         return fragments;
     }
 
-
-
     private void setUpViewPager(){
 
         this.viewPager.setAdapter(new com.example.macuser.petagramrecyclerview.actitivies.PageAdapter(getSupportFragmentManager(), this.addFragments()));
         tabLayout.setupWithViewPager(viewPager);
     }
-
 
     @Override
     public void onUpdateModelElement(int position) {

@@ -1,21 +1,17 @@
 package com.example.macuser.petagramrecyclerview.actitivies;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.FrameMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.RecyclerViewFragment;
-import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
 import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
 
@@ -34,13 +30,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         this.customToolbarInitialization();
         this.petsInitialization();
-        this.setUpViewPager();
+
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -48,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
             String objAsJson = bundle.getString("pets");
             ArrayList<Pet> test = Pets.fromJson(objAsJson).getPets();
             this.pets = new Pets(test);
-            //getSupportFragmentManager().beginTransaction().add(R.id., RecyclerViewFragment.newInstance(objAsJson),"RecyclerViewFragment").commit();
+            this.setUpViewPager(objAsJson);
+            //getSupportFragmentManager().beginTransaction().add(R.id.content, RecyclerViewFragment.newInstance(objAsJson),"RecyclerViewFragment").commit();
+        }else{
+            this.setUpViewPager(null);
         }
 
 
@@ -79,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
 
     void startSecondActivity(View view){
+
         Intent intent = new Intent(MainActivity.this, PetLikesActivity.class);
         String petJson = pets.toJson();
         intent.putExtra("pets", petJson);
@@ -105,17 +104,17 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
     }
 
-    private ArrayList<android.support.v4.app.Fragment> addFragments(){
+    private ArrayList<android.support.v4.app.Fragment> addFragments(String objAsJson){
         ArrayList<android.support.v4.app.Fragment> fragments = new ArrayList<>();
 
-        fragments.add(new RecyclerViewFragment());
+        fragments.add(RecyclerViewFragment.newInstance(objAsJson));
         fragments.add(new ProfileFragmet());
         return fragments;
     }
 
-    private void setUpViewPager(){
+    private void setUpViewPager(String objAsJson){
 
-        this.viewPager.setAdapter(new com.example.macuser.petagramrecyclerview.actitivies.PageAdapter(getSupportFragmentManager(), this.addFragments()));
+        this.viewPager.setAdapter(new com.example.macuser.petagramrecyclerview.actitivies.PageAdapter(getSupportFragmentManager(), this.addFragments(objAsJson)));
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -25,7 +25,7 @@ public class RecyclerViewFragment extends Fragment{
 
     private Pets pets;
     private RecyclerView recyclerView;
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "pets";
 
     OnUpdateModelListener mCallback;
 
@@ -64,6 +64,14 @@ public class RecyclerViewFragment extends Fragment{
         View v = inflater.inflate(R.layout.frament_recyclerview, container, false);
 
         this.petsInitialization();
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String objAsJson = bundle.getString(ARG_PARAM1);
+            if (objAsJson != null){
+                this.pets = Pets.fromJson(objAsJson);
+            }
+        }
         this.adapterInitialization(v);
 
         return v;

@@ -64,27 +64,27 @@ public class ContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                sendTemplateEmail();
-//                Properties properties = new Properties();
-//                properties.put("mail.smtp.host", "smtp.gmail.com");
-//                properties.put("mail.smtp.socketFactory.port", "465");
-//                properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-//                properties.put("mail.smtp.auth", "true");
-//                properties.put("mail.smtp.port", "465");
-//
-//                session = Session.getDefaultInstance(properties, new Authenticator() {
-//                    @Override
-//                    protected PasswordAuthentication getPasswordAuthentication() {
-//                        String email = "petagramtest@gmail.com";
-//                        String clave = "peta2234%t7$";
-//                        return new PasswordAuthentication(email, clave);
-//                    }
-//                });
-//
-//                pdialog = ProgressDialog.show(context, "", "Sending Mail...", true);
-//
-//                RetreiveFeedTask task = new RetreiveFeedTask();
-//                task.execute();
+
+                Properties properties = new Properties();
+                properties.put("mail.smtp.host", "smtp.gmail.com");
+                properties.put("mail.smtp.socketFactory.port", "465");
+                properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+                properties.put("mail.smtp.auth", "true");
+                properties.put("mail.smtp.port", "587");
+
+                session = Session.getDefaultInstance(properties, new Authenticator() {
+                    @Override
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        String email = "petagramtest@gmail.com";
+                        String clave = "peta2234%t7$";
+                        return new PasswordAuthentication(email, clave);
+                    }
+                });
+
+                pdialog = ProgressDialog.show(context, "", "Sending Mail...", true);
+
+                RetreiveFeedTask task = new RetreiveFeedTask();
+                task.execute();
             }
         });
 

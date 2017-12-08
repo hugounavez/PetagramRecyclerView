@@ -1,4 +1,4 @@
-package com.example.macuser.petagramrecyclerview;
+package com.example.macuser.petagramrecyclerview.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
 import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;

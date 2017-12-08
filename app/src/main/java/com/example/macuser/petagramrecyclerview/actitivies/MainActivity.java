@@ -11,7 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.macuser.petagramrecyclerview.R;
-import com.example.macuser.petagramrecyclerview.RecyclerViewFragment;
+import com.example.macuser.petagramrecyclerview.fragments.ProfileFragmet;
+import com.example.macuser.petagramrecyclerview.fragments.RecyclerViewFragment;
 import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
 

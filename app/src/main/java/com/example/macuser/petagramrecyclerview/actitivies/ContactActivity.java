@@ -39,8 +39,6 @@ public class ContactActivity extends AppCompatActivity {
     Session session = null;
     ProgressDialog pdialog = null;
     Context context = null;
-    EditText reciep, sub, msg;
-    String rec, subject, textMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

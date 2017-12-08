@@ -6,4 +6,5 @@
     <dimen name="bone_size_width">30dp</dimen>
     <dimen name="bone_size_height">30dp</dimen>
     <dimen name="card_size_height">30dp</dimen>
+    <dimen name="font_title_size">30dp</dimen>
 </resources>

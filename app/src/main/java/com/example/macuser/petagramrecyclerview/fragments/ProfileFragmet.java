@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
@@ -34,8 +36,8 @@ public class ProfileFragmet extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private TextView  textView;
     private RecyclerView recyclerView;
-
     private Pets pets;
 
     // TODO: Rename and change types of parameters
@@ -82,6 +84,7 @@ public class ProfileFragmet extends Fragment {
         this.petsInitialization();
         View view = inflater.inflate(R.layout.fragment_profile_fragmet, container, false);
         this.adapterInitialization(view);
+
         return view;
     }
 
@@ -89,14 +92,19 @@ public class ProfileFragmet extends Fragment {
     void adapterInitialization(View v){
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_profile);
+        textView    = (TextView) v.findViewById(R.id.tvPuppyName);
 
-        GridLayoutManager llm = new GridLayoutManager(getActivity(), 2);
+        GridLayoutManager llm = new GridLayoutManager(getActivity(), 3);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
 
         final ProfileAdapter profileAdapter = new ProfileAdapter(pets.getPets());
 
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(llm);
+
+
+        textView.setText(pets.getPets().get(0).getName());
+
 
     }
 
@@ -107,6 +115,7 @@ public class ProfileFragmet extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -142,10 +151,10 @@ public class ProfileFragmet extends Fragment {
 
     void petsInitialization(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
-        temporalPets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
-        temporalPets.add(new Pet("Sam", R.drawable.puppygolden, 0));
-        temporalPets.add(new Pet("Bob", R.drawable.puppyhood, 0));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 7));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 30));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10));
 
         this.pets = new Pets(temporalPets);
 

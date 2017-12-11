@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.macuser.petagramrecyclerview">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,20 +18,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".actitivies.PetLikesActivity"
-            android:parentActivityName=".actitivies.MainActivity"
-            >
-
+        <activity
+            android:name=".actitivies.PetLikesActivity"
+            android:parentActivityName=".actitivies.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".actitivies.MainActivity"
-                ></meta-data>
+                android:value=".actitivies.MainActivity" />
         </activity>
-        <activity android:name=".actitivies.ContactActivity">
-
-        </activity>
-
-
+        <activity android:name=".actitivies.ContactActivity"></activity>
+        <activity
+            android:name=".actitivies.AboutActivity"
+            android:label="@string/title_activity_about"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

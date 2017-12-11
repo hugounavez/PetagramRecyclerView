@@ -8,7 +8,9 @@
     <string name="input_hint_name">Name</string>
     <string name="input_hint_email">Email</string>
     <string name="input_hint_message">Message</string>
-
+    <string name="bio">Hola, soy Ing. Electricista y MSc en Ingeniería Biomédica. Me gusta programar y aprender cosas nuevas. Trabajo actualmente como iOS developer. </string>
+    <string name="twitter">\@hugounavez</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>

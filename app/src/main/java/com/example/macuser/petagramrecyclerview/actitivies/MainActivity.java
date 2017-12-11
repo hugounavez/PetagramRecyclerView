@@ -65,10 +65,12 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
         switch (item.getItemId()){
             case R.id.menu_about:
-                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(i);
                 break;
             case R.id.menu_contact:
+                Intent intent = new Intent(MainActivity.this, ContactActivity.class);
+                startActivity(intent);
                 break;
 
         }
@@ -117,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
         this.viewPager.setAdapter(new com.example.macuser.petagramrecyclerview.actitivies.PageAdapter(getSupportFragmentManager(), this.addFragments(objAsJson)));
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.person);
     }
 
     @Override

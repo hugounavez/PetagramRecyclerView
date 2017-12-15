@@ -41,16 +41,25 @@ public class ConstructorDogs{
 
       // Donde BaseDatos es una clase para manejar la base de datos SQL;
       BaseDatos db = new BaseDatos(context);
+      insertarDosContactos(db);
       return db.obtenerModeloDatosDeBaseDeDatos();
 
     }
 
-    public void insertarTresContactos(BaseDatos db){
+    public void insertarDosContactos(BaseDatos db){
       // Este es un método de ejemplo para insertar tres elementos
       ContentValues contentValues = new ContentValues();
       contentValues.put(ConstantesBaseDatos.TABLE_NAME_ENTITYNAME_NAME, "Dummy name");
       // Aquí irían los otros atributos de la tabla:
       //contentValues.put(ConstantesBaseDatos.TABLE_NAME_ENTITYNAME_NAME2, "Dummy name2");
+      db.insertarPOJOClassObject(contentValues);
+
+      // Se inserta entonces el siguiente elemento o row
+      ContentValues contentValues = new ContentValues();
+      contentValues.put(ConstantesBaseDatos.TABLE_NAME_ENTITYNAME_NAME, "Dummy name otro");
+      // Aquí irían los otros atributos de la tabla:
+      //contentValues.put(ConstantesBaseDatos.TABLE_NAME_ENTITYNAME_NAME2, "Dummy name otro 2");
+      db.insertarPOJOClassObject(contentValues);
     }
 }
 

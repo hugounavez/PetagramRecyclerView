@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
-import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
 import com.example.macuser.petagramrecyclerview.presenters.IRecyclerViewFragmentPresenter;
 
@@ -30,10 +29,13 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     private static final String ARG_PARAM1 = "pets";
     private IRecyclerViewFragmentPresenter presenter;
 
+
+    // This listener is just for update model in the fragment
     OnUpdateModelListener mCallback;
 
     @Override
     public void linearLayoutGeneration() {
+
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
@@ -48,8 +50,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
                 switch (action){
                     case 0:
                         // Update likes in puppy
-                        int previousRating = pets.getPets().get(i).getRating();
-                        pets.getPets().get(i).setRating(previousRating + 1);
                         mCallback.onUpdateModelElement(i);
                         break;
                     default:
@@ -103,8 +103,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
 
-        this.petsInitialization();
-
         Bundle bundle = getArguments();
         if (bundle != null){
             String objAsJson = bundle.getString(ARG_PARAM1);
@@ -114,8 +112,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         }
 
         presenter = new RecyclerViewFragmentPresenter(this, getContext());
-        //this.initializeAdapterRV(this.createAdapter(this.pets));
-        //this.linearLayoutGeneration();
         return v;
     }
 
@@ -136,19 +132,5 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
             this.pets = Pets.fromJson(getArguments().getString(ARG_PARAM1)) ;
         }
     }
-
-
-
-    void petsInitialization(){
-        ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
-        temporalPets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
-        temporalPets.add(new Pet("Sam", R.drawable.puppygolden, 0));
-        temporalPets.add(new Pet("Bob", R.drawable.puppyhood, 0));
-
-        this.pets = new Pets(temporalPets);
-
-    }
-
 
 }

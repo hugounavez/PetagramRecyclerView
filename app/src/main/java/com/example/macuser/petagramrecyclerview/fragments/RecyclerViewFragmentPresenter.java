@@ -16,6 +16,7 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     private Context context;
     private PetsConstructor petsConstructor;
     private Pets pets;
+
     public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context) {
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;

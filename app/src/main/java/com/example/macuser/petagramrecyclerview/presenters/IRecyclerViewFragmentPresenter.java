@@ -7,4 +7,6 @@ package com.example.macuser.petagramrecyclerview.presenters;
 public interface IRecyclerViewFragmentPresenter {
     public void getDataFromDatabase();
     public void showContactosRV();
+
+    void insertLike(int petId);
 }

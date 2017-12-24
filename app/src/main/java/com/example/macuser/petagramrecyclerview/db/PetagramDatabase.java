@@ -44,8 +44,8 @@ public class PetagramDatabase extends SQLiteOpenHelper {
 
         String queryToCreateLikeTable = "CREATE TABLE " + DatabaseConstants.TABLE_LIKES + "(" +
                 DatabaseConstants.TABLE_LIKES_ID    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                DatabaseConstants.TABLE_PETS_ID     + " INTEGER, " +
-                "FOREIGN KEY (" + DatabaseConstants.TABLE_PETS_ID + ")" +
+                DatabaseConstants.TABLE_LIKES_PETS_ID     + " INTEGER, " +
+                "FOREIGN KEY (" + DatabaseConstants.TABLE_LIKES_PETS_ID + ")" +
                 " REFERENCES " + DatabaseConstants.TABLE_PETS + "(" + DatabaseConstants.TABLE_PETS_ID + ")" + ")";
 
         sqLiteDatabase.execSQL(queryToCreateLikeTable);
@@ -64,6 +64,7 @@ public class PetagramDatabase extends SQLiteOpenHelper {
     public Pets fetchPetsData(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
         // Make a query
+        // Query para conseguir todas las pets
         String query = "SELECT * FROM " + DatabaseConstants.TABLE_PETS;
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -77,6 +78,35 @@ public class PetagramDatabase extends SQLiteOpenHelper {
             Pet pet = new Pet(name, picture, 0 , id);
 
             temporalPets.add(pet);
+        }
+
+
+        //String queryLikes = "SELECT *, COUNT" + "(" + DatabaseConstants.TABLE_PETS_ID + ")" +
+        //        " AS likes_number FROM " + "(" + "(" + "SELECT * FROM " + DatabaseConstants.TABLE_PETS +
+         //       " INNER JOIN " + DatabaseConstants.TABLE_LIKES + " ON " + DatabaseConstants.TABLE_PETS + "." + DatabaseConstants.TABLE_PETS_ID +
+           //     " = " + DatabaseConstants.TABLE_LIKES + "." + DatabaseConstants.TABLE_LIKES_PETS_ID + ")" + "AS TEST" + ") " + "GROUP BY " + DatabaseConstants.TABLE_LIKES_ID;
+        //select *, count(id)  as likes_number from ((select * from PET inner join LIKE on pet.id = like.id) as Test)  group by id
+
+
+        String queryLikes = "SELECT " + DatabaseConstants.TABLE_PETS_ID + ", COUNT" + "(" + DatabaseConstants.TABLE_PETS_ID + ")" +
+                "FROM " + DatabaseConstants.TABLE_LIKES + " GROUP BY " + DatabaseConstants.TABLE_PETS_ID;
+
+        Cursor registros1 = db.rawQuery(queryLikes, null);
+
+        // There are no values but the registers of the table
+
+        while (registros1.moveToNext()){
+
+            int id = registros1.getInt(0);
+            int rating = registros1.getInt(1);
+            int len = temporalPets.size();
+
+            for (int i = 0; i < len; ++i) {
+                if (temporalPets.get(i).getId() == id){
+
+                    temporalPets.get(i).setRating(rating);
+                }
+            }
         }
 
         db.close();

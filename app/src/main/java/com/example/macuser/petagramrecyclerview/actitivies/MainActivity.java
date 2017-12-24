@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
     void petsInitialization(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
         temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0, 0));
+        temporalPets.add(new Pet("Tony888", R.drawable.puppy2, 0, 6));
         this.pets = new Pets(temporalPets);
 
     }

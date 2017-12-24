@@ -21,7 +21,7 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;
         petsConstructor = new PetsConstructor(context);
-        petsConstructor.insertPets();
+        //petsConstructor.insertPets();
         this.getDataFromDatabase();
     }
 
@@ -36,6 +36,12 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         // Mostrar datos en el adaptador
         iRecyclerViewFragmentView.initializeAdapterRV(iRecyclerViewFragmentView.createAdapter(this.pets));
         iRecyclerViewFragmentView.linearLayoutGeneration();
+    }
+
+    @Override
+    public void insertLike(int petId){
+        this.petsConstructor.insertLike(petId);
+
     }
 
 }

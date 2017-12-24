@@ -54,6 +54,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
                         // Update likes in puppy
                         mCallback.onUpdateModelElement(i);
                         int number = petsLocal.getPets().get(i).getId();
+                        presenter.insertLike(number);
                         System.out.println(number);
 
                         break;

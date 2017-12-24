@@ -31,10 +31,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     private static final String ARG_PARAM1 = "pets";
     private IRecyclerViewFragmentPresenter presenter;
 
-
-    // This listener is just for update model in the fragment
-    OnUpdateModelListener mCallback;
-
     @Override
     public void linearLayoutGeneration() {
 
@@ -52,7 +48,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
                 switch (action){
                     case 0:
                         // Update likes in puppy
-                        mCallback.onUpdateModelElement(i);
                         int number = petsLocal.getPets().get(i).getId();
                         presenter.insertLike(number);
                         System.out.println(number);
@@ -72,12 +67,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
         recyclerView.setAdapter(petAdapter);
     }
 
-    // Container Activity must implement this interface
-    public interface OnUpdateModelListener {
-        public void onUpdateModelElement(int position);
-    }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -87,17 +76,6 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
 
         Activity activity;
 
-        if (context instanceof Activity){
-            activity = (Activity) context;
-
-            try {
-                mCallback = (OnUpdateModelListener) activity;
-            } catch (ClassCastException e) {
-                throw new ClassCastException(activity.toString()
-                        + " must implement OnUpdateModelListener");
-            }
-
-        }
 
     }
 

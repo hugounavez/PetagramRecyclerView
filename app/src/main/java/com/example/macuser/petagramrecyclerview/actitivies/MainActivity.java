@@ -22,11 +22,9 @@ import com.example.macuser.petagramrecyclerview.models.Pets;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewFragment.OnUpdateModelListener, ProfileFragmet.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ProfileFragmet.OnFragmentInteractionListener {
 
     private Pets pets;
-    private RecyclerView recyclerView;
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -40,22 +38,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         viewPager = (ViewPager) findViewById(R.id.viewPager);
 
         this.customToolbarInitialization();
-        this.petsInitialization();
-
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            // Parse the string to a User object
-            String objAsJson = bundle.getString("pets");
-            ArrayList<Pet> test = Pets.fromJson(objAsJson).getPets();
-            this.pets = new Pets(test);
-            this.setUpViewPager(objAsJson);
-            //getSupportFragmentManager().beginTransaction().add(R.id.content, RecyclerViewFragment.newInstance(objAsJson),"RecyclerViewFragment").commit();
-        }else{
-            this.setUpViewPager(null);
-        }
-
-
+        this.setUpViewPager(null);
         this.activity = this;
 
     }
@@ -101,15 +84,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         setSupportActionBar(toolbar);
     }
 
-
-    void petsInitialization(){
-        ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0, 0));
-        temporalPets.add(new Pet("Tony888", R.drawable.puppy2, 0, 6));
-        this.pets = new Pets(temporalPets);
-
-    }
-
     private ArrayList<android.support.v4.app.Fragment> addFragments(String objAsJson){
         ArrayList<android.support.v4.app.Fragment> fragments = new ArrayList<>();
 
@@ -126,11 +100,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         tabLayout.getTabAt(1).setIcon(R.drawable.person);
     }
 
-    @Override
-    public void onUpdateModelElement(int position) {
-        int previousRating = pets.getPets().get(position).getRating();
-        this.pets.getPets().get(position).setRating(previousRating + 1);
-    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {

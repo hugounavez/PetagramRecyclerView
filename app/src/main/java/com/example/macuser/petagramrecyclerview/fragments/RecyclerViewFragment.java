@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.adapters.PetAdapter;
+import com.example.macuser.petagramrecyclerview.db.PetsConstructor;
+import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
 import com.example.macuser.petagramrecyclerview.presenters.IRecyclerViewFragmentPresenter;
 
@@ -42,7 +44,7 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
     }
 
     @Override
-    public PetAdapter createAdapter(Pets petsLocal) {
+    public PetAdapter createAdapter(final Pets petsLocal) {
 
         final PetAdapter petAdapter = new PetAdapter(petsLocal.getPets(), new PetAdapter.OnItemClickListener() {
             @Override
@@ -51,6 +53,9 @@ public class RecyclerViewFragment extends Fragment implements IRecyclerViewFragm
                     case 0:
                         // Update likes in puppy
                         mCallback.onUpdateModelElement(i);
+                        int number = petsLocal.getPets().get(i).getId();
+                        System.out.println(number);
+
                         break;
                     default:
                         break;

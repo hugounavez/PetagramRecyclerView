@@ -8,11 +8,13 @@ public class Pet {
     private String name;
     private int picture;
     private int rating;
+    private int id;
 
-    public Pet(String name, int picture, int rating){
+    public Pet(String name, int picture, int rating, int id){
         this.setName(name);
         this.setPicture(picture);
         this.setRating(rating);
+        this.setId(id);
     }
 
     public String getName() {
@@ -37,5 +39,13 @@ public class Pet {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

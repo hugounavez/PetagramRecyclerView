@@ -22,7 +22,6 @@ public class PetagramDatabase extends SQLiteOpenHelper {
     This class is a sql manager to be used in the rest of the app
     */
 
-
     Context context;
 
     public PetagramDatabase(Context context) {
@@ -43,24 +42,12 @@ public class PetagramDatabase extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL(queryToCreatePetTable);
 
-        //DatabaseConstants.TABLE_PETS_ID     + " INTEGER, " +
-
         String queryToCreateLikeTable = "CREATE TABLE " + DatabaseConstants.TABLE_LIKES + "(" +
                 DatabaseConstants.TABLE_LIKES_ID    + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                DatabaseConstants.TABLE_PETS_ID     + " INTEGER, " +
+                "FOREIGN KEY (" + DatabaseConstants.TABLE_PETS_ID + ")" +
+                " REFERENCES " + DatabaseConstants.TABLE_PETS + "(" + DatabaseConstants.TABLE_PETS_ID + ")" + ")";
 
-                "FOREIGN KEY (" + DatabaseConstants.TABLE_PETS_ID + ") REFERENCES " + DatabaseConstants.TABLE_PETS +
-                "(" + DatabaseConstants.TABLE_PETS_ID + ")" + ")";
-
-
-//        String queryToCreateLikeTable = "CREATE TABLE " + DatabaseConstants.TABLE_LIKES + "(" +
-//                DatabaseConstants.TABLE_LIKES_ID   + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-//                DatabaseConstants.TABLE_LIKES_COUNT + " INTEGER, " +
-//                "FOREIGN KEY (" + DatabaseConstants.TABLE_LIKES_PETS_ID + ") " + "REFERENCE " + DatabaseConstants.TABLE_PETS +
-//                "(" + DatabaseConstants.TABLE_PETS_ID + ")" +
-//                ")";
-//
-
-        System.out.println("respuesta : " + queryToCreateLikeTable);
         sqLiteDatabase.execSQL(queryToCreateLikeTable);
     }
 
@@ -87,7 +74,7 @@ public class PetagramDatabase extends SQLiteOpenHelper {
             int id = registros.getInt(0);
             String name = registros.getString(1);
             int picture = registros.getInt(2);
-            Pet pet = new Pet(name, picture, id);
+            Pet pet = new Pet(name, picture, 0 , id);
 
             temporalPets.add(pet);
         }
@@ -107,6 +94,11 @@ public class PetagramDatabase extends SQLiteOpenHelper {
     }
 
 
+    public void insertLike (ContentValues contentValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(DatabaseConstants.TABLE_LIKES, null, contentValues);
+        db.close();
+    }
 
 
 }

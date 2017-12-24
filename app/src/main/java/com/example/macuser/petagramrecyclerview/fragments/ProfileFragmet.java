@@ -151,10 +151,10 @@ public class ProfileFragmet extends Fragment {
 
     void petsInitialization(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 7));
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10));
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 30));
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 7, 0));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10, 0));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 30, 0));
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 10, 0));
 
         this.pets = new Pets(temporalPets);
 

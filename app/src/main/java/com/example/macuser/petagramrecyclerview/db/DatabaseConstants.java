@@ -15,8 +15,8 @@ public final class DatabaseConstants {
     public static final String TABLE_PET_IMG = "picture";
 
     public static final String TABLE_LIKES = "LIKE";
-    public static final String TABLE_LIKES_ID = "id";
-    public static final String TABLE_LIKES_PETS_ID = "pets_id";
+    public static final String TABLE_LIKES_ID = "like_id";
+    public static final String TABLE_LIKES_PETS_ID = "id";
 
 
 }

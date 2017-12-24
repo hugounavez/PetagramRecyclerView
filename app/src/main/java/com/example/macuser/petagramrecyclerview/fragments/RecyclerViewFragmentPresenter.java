@@ -20,14 +20,15 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
     public RecyclerViewFragmentPresenter(IRecyclerViewFragmentView iRecyclerViewFragmentView, Context context) {
         this.iRecyclerViewFragmentView = iRecyclerViewFragmentView;
         this.context = context;
+        petsConstructor = new PetsConstructor(context);
+        petsConstructor.insertPets();
         this.getDataFromDatabase();
     }
 
     @Override
     public void getDataFromDatabase() {
-        petsConstructor = new PetsConstructor(context);
-         this.pets = petsConstructor.getPetsData();
-        this.showContactosRV();
+         this.pets = this.petsConstructor.getPetsData();
+         this.showContactosRV();
     }
 
     @Override
@@ -36,4 +37,5 @@ public class RecyclerViewFragmentPresenter implements IRecyclerViewFragmentPrese
         iRecyclerViewFragmentView.initializeAdapterRV(iRecyclerViewFragmentView.createAdapter(this.pets));
         iRecyclerViewFragmentView.linearLayoutGeneration();
     }
+
 }

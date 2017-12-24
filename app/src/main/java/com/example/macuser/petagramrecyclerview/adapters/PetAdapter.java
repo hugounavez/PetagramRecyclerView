@@ -50,6 +50,7 @@ public class PetAdapter extends RecyclerView.Adapter<PetAdapter.PetViewHolder>{
                 listener.onItemClick(position, 0);
                 int newRating = pets.get(position).getRating() + 1;
                 pets.get(position).setRating(newRating);
+
                 holder.tvRating.setText(String.valueOf(newRating));
             }
         });

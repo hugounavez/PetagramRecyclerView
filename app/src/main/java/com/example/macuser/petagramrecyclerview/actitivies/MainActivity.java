@@ -1,5 +1,7 @@
 package com.example.macuser.petagramrecyclerview.actitivies;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
@@ -11,11 +13,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import com.example.macuser.petagramrecyclerview.R;
+import com.example.macuser.petagramrecyclerview.db.PetsConstructor;
 import com.example.macuser.petagramrecyclerview.fragments.ProfileFragmet;
 import com.example.macuser.petagramrecyclerview.fragments.RecyclerViewFragment;
 import com.example.macuser.petagramrecyclerview.models.Pet;
 import com.example.macuser.petagramrecyclerview.models.Pets;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RecyclerViewFragment.OnUpdateModelListener, ProfileFragmet.OnFragmentInteractionListener {
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    private Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         }
 
 
+        this.activity = this;
 
     }
 
@@ -98,11 +104,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
 
     void petsInitialization(){
         ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
-        temporalPets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
-        temporalPets.add(new Pet("Sam", R.drawable.puppygolden, 0));
-        temporalPets.add(new Pet("Bob", R.drawable.puppyhood, 0));
-
+        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0, 0));
         this.pets = new Pets(temporalPets);
 
     }

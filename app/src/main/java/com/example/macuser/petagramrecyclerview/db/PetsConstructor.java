@@ -15,37 +15,52 @@ import java.util.ArrayList;
 
 public class PetsConstructor {
 
+    PetagramDatabase db;
     private Context context;
     public PetsConstructor(Context context) {
         this.context = context;
+        this.db = new PetagramDatabase(context);
+
+        // With this line we insert pets
+        //this.insertPets();
+
 
     }
 
     public Pets getPetsData(){
-        /*
-        ArrayList<Pet> temporalPets = new ArrayList<Pet>();
-        temporalPets.add(new Pet("Tony", R.drawable.puppy2, 0));
-        temporalPets.add(new Pet("Marta", R.drawable.puppybeagle, 0));
-        temporalPets.add(new Pet("Sam", R.drawable.puppygolden, 0));
-        temporalPets.add(new Pet("Bob", R.drawable.puppyhood, 0));
-
-        return new Pets(temporalPets);
-
-        */
-
-        PetagramDatabase db = new PetagramDatabase(context);
-        this.insertPets(db);
         return db.fetchPetsData();
 
     }
 
 
-    public void insertPets(PetagramDatabase db){
+    public void insertPets(){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseConstants.TABLE_PET_NAME, "Pepe");
+        contentValues.put(DatabaseConstants.TABLE_PET_NAME, "Tony");
         contentValues.put(DatabaseConstants.TABLE_PET_IMG, R.drawable.puppy2);
+        this.db.insertPet(contentValues);
 
-        db.insertPet(contentValues);
+        contentValues = new ContentValues();
+        contentValues.put(DatabaseConstants.TABLE_PET_NAME, "Marta");
+        contentValues.put(DatabaseConstants.TABLE_PET_IMG, R.drawable.puppybeagle);
+        this.db.insertPet(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(DatabaseConstants.TABLE_PET_NAME, "Sam");
+        contentValues.put(DatabaseConstants.TABLE_PET_IMG, R.drawable.puppygolden);
+        this.db.insertPet(contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put(DatabaseConstants.TABLE_PET_NAME, "Bob");
+        contentValues.put(DatabaseConstants.TABLE_PET_IMG, R.drawable.puppyhood);
+        this.db.insertPet(contentValues);
+    }
+
+
+    public void insertLike(int petId){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseConstants.TABLE_LIKES_PETS_ID, petId);
+        db.insertLike(contentValues);
+        db.close();
     }
 
 

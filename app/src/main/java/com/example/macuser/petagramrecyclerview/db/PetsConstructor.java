@@ -42,6 +42,10 @@ public class PetsConstructor {
 
     }
 
+    public Pets getFavoritesPets(){
+        return db.getFavorites();
+    }
+
 
     public void insertPets(){
         ContentValues contentValues = new ContentValues();

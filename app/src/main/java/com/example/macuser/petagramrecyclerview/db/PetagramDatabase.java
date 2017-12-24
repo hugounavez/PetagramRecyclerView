@@ -124,11 +124,70 @@ public class PetagramDatabase extends SQLiteOpenHelper {
     }
 
 
+
+    public Pets getFavorites(){
+        ArrayList<Pet> temporalPets = new ArrayList<Pet>();
+        // Make a query
+        // Query para conseguir todas las pets
+        String query = "SELECT * FROM " + DatabaseConstants.TABLE_PETS;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor registros = db.rawQuery(query, null);
+
+        // There are no values but the registers of the table
+        while (registros.moveToNext()){
+            int id = registros.getInt(0);
+            String name = registros.getString(1);
+            int picture = registros.getInt(2);
+            Pet pet = new Pet(name, picture, 0 , id);
+
+            temporalPets.add(pet);
+        }
+
+
+        String query1 = "SELECT " + DatabaseConstants.TABLE_PETS_ID + ", COUNT" + "(" +
+                "(" + DatabaseConstants.TABLE_PETS_ID + ")" + "FROM " + DatabaseConstants.TABLE_LIKES +
+                "(" + "GROUP BY " + DatabaseConstants.TABLE_PETS_ID + " COUNT" + "(" +
+                DatabaseConstants.TABLE_PETS_ID + ")" + " DESC LIMIT 5";
+        //select id, count(id) from like group by  like.id ORDER BY  count(id) DESC
+
+        db = this.getReadableDatabase();
+        Cursor registros1 = db.rawQuery(query1, null);
+
+
+        ArrayList<Pet> petsToReturn = new ArrayList<Pet>();
+
+        while (registros1.moveToNext()){
+            int id = registros1.getInt(0);
+            int rating = registros1.getInt(1);
+            int len = temporalPets.size();
+
+            for (int i = 0; i < len; ++i) {
+                if (temporalPets.get(i).getId() == id){
+
+                    Pet pet = temporalPets.get(i);
+                    pet.setRating(rating);
+
+                    petsToReturn.add(pet);
+
+                }
+            }
+
+        }
+
+        db.close();
+
+        return new Pets(petsToReturn);
+    }
+
+
+
     public void insertLike (ContentValues contentValues) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(DatabaseConstants.TABLE_LIKES, null, contentValues);
         db.close();
     }
+
 
 
 }

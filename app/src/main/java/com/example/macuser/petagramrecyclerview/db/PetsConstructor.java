@@ -2,6 +2,7 @@ package com.example.macuser.petagramrecyclerview.db;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.macuser.petagramrecyclerview.R;
 import com.example.macuser.petagramrecyclerview.models.Pet;
@@ -21,8 +22,17 @@ public class PetsConstructor {
         this.context = context;
         this.db = new PetagramDatabase(context);
 
-        // With this line we insert pets
-        //this.insertPets();
+
+        //--SAVE Data
+        SharedPreferences preferences = context.getSharedPreferences("MyPreferences", context.MODE_PRIVATE);
+
+        if (preferences.getInt("alreadyOpenned", 0) == 0) {
+            // With this line we insert pets
+            this.insertPets();
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("alreadyOpenned", 1);
+            editor.commit();
+        }
 
 
     }
